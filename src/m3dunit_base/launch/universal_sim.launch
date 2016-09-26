@@ -24,7 +24,9 @@
 <!--		</node>-->
     <node name="aggregator" pkg="m3d_aggregator" type="m3d_aggregator" output="screen">
         <param name="pointCloudFrame" value="$(arg unit_name)/m3d_link"/>
-        <param name="rotLaserPointCloud" value="rot_scan"/>
+        <param name="rotLaserScan" value="/$(arg unit_name)/rot_scan"/>
+				<param name="rotLaserPointCloud" value=""/>
+
 		</node>
 		<node name="output_topic1" pkg="rostopic" type="rostopic" output="screen" args="pub /$(arg unit_name)/rotation/velocity std_msgs/Float32 $(arg vel)"/>
 
