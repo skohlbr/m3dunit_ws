@@ -1,0 +1,168 @@
+<?xml version="1.0"?>
+<!-- Revolute-Revolute Manipulator -->
+<robot name="m3d" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- Constants for robot dimensions -->
+  <xacro:property name="PI" value="3.1415926535897931"/>
+  <xacro:property name="mass" value="1" /> <!-- arbitrary value for mass -->
+  
+  <xacro:property name="width"  value="0.1" /> 
+  <xacro:property name="length" value="0.2" /> 
+  
+  <xacro:property name="height" value="0.15" /> 
+  
+  
+  <xacro:property name="plate_width"  value="0.1" /> 
+  <xacro:property name="plate_length" value="0.1" /> 
+  <xacro:property name="plate_height" value="0.025" /> 
+  <xacro:property name="plate_clearance" value="0.025" /> 
+
+
+
+  <!-- Import all Gazebo-customization elements, including Gazebo colors -->
+  <xacro:include filename="$(find m3d_simulator)/urdf/m3d.gazebo" />
+  <!-- Used for fixing robot to Gazebo 'base_link' -->
+  <link name="world"/>
+
+  <joint name="fixed" type="fixed">
+    <parent link="world"/>
+    <child link="m3d_sim/m3d_link"/>
+    <origin xyz="0 0 1" rpy="0 0 0"/>
+  </joint>
+
+  <!-- Base Link -->
+  <link name="m3d_sim/m3d_link">
+    <collision>
+      <origin xyz="0 0 ${height/2}" rpy="0 0 0"/>
+      <geometry>
+	<box size="${length} ${width} ${height}"/>
+      </geometry>
+    </collision>
+
+    <visual>
+      <origin xyz="0 0 ${height/2}" rpy="0 0 0"/>
+      <geometry>
+	<box size="${length} ${width} ${height}"/>
+      </geometry>
+      <material name="orange"/>
+    </visual>
+
+    <inertial>
+      <origin xyz="0 0 ${height}" rpy="0 0 0"/>
+      <mass value="${mass}"/>
+      <inertia
+	  ixx="${mass / 12.0 * (width*width + height*height)}" ixy="0.0" ixz="0.0"
+	  iyy="${mass / 12.0 * (height*height + width*width)}" iyz="0.0"
+	  izz="${mass / 12.0 * (width*width + width*width)}"/>
+    </inertial>
+  </link>
+
+  <joint name="m3d_laser_rotation_joint" type="continuous">
+    <parent link="m3d_sim/m3d_link"/>
+    <child link="m3d_sim/m3d_rot_laser_link"/>
+    <origin xyz="${length/2-0.05}  0 ${height+plate_clearance}" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <dynamics damping="0.7"/>
+  </joint>
+
+  <!-- rotating plate -->
+  <link name="m3d_sim/m3d_rot_laser_link">
+    <collision>
+      <origin xyz="0 0 ${plate_height/2}" rpy="0 0 0"/>
+      <geometry>
+	<box size="${plate_length} ${plate_width} ${plate_height}"/>
+      </geometry>
+    </collision>
+
+    <visual>
+      <origin xyz="0 0 ${plate_height}" rpy="0 0 0"/>
+      <geometry>
+	<box size="${plate_length} ${plate_width} ${plate_height}"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+
+    <inertial>
+      <mass value="1e-5" />
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+    </inertial>
+  </link>
+  
+  
+  
+    <!-- rotating laser -->
+   <link name="hokuyo_link_rotation">
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+	<box size="0.05 0.05 0.05"/>
+      </geometry>
+    </collision>
+
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://rrbot_description/meshes/hokuyo.dae"/>
+      </geometry>
+    </visual>
+
+    <inertial>
+      <mass value="1e-5" />
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+    </inertial>
+  </link>
+
+  <joint name="laser_link" type="fixed">
+    <axis xyz="0 1 0" />
+    <origin xyz="0 0 .06" rpy="0 ${-PI/2} 0"/>
+    <parent link="m3d_sim/m3d_rot_laser_link"/>
+    <child link="hokuyo_link_rotation"/>
+  </joint>
+  
+  
+  
+  
+    <!-- front laser2 -->
+   <link name="hokuyo_link_front">
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+	<box size="0.05 0.05 0.05"/>
+      </geometry>
+    </collision>
+
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://rrbot_description/meshes/hokuyo.dae"/>
+      </geometry>
+    </visual>
+
+    <inertial>
+      <mass value="1e-5" />
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+    </inertial>
+  </link>
+
+  <joint name="hokuyo_link_front_joint" type="fixed">
+    <axis xyz="0 1 0" />
+    <origin xyz="${length/2+0.05} 0 ${height/2}" rpy="${PI} 0 0"/>
+    <parent link="m3d_sim/m3d_link"/>
+    <child link="hokuyo_link_front"/>
+  </joint>
+  
+  
+  <transmission name="tran1">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="m3d_laser_rotation_joint">
+      <hardwareInterface>VelocityJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor1">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+</robot>

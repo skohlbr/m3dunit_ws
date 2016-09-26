@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<launch>
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find husky_gazebo)/worlds/clearpath_playpen.world"/> <!-- world_name is wrt GAZEBO_RESOURCE_PATH environment variable -->
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="headless" value="false"/>
+    <arg name="debug" value="false"/>
+  </include>
+
+
+  <!-- <param name="robot_description" command="$(find xacro)/xacro.py '$(find husky_description)/urdf/description.xacro'
+    laser_enabled:=true
+    ur5_enabled:=false
+    kinect_enabled:=false
+    " /> -->
+    <param name="m3d_description" command="$(find xacro)/xacro.py '$(find m3d_simulator)/urdf/m3d.urdf.xarco'" />
+    
+
+<node name="spawn_husky_model" pkg="gazebo_ros" type="spawn_model"
+    args="$(optenv ROBOT_INITIAL_POSE) -unpause -urdf -param m3d_description -model mobile_base"/>
+
+ <param name="robot_description"
+	 command="$(find xacro)/xacro.py '$(find m3d_simulator)/urdf/m3d.urdf.xarco'" />
+ 
+ <rosparam file="$(find m3d_simulator)/config/m3d_control.yaml" command="load"/>
+ <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+    output="screen" ns="/m3d" args="m3d_laser_rotation_controler joint_state_controller"/>
+  
+    <!--<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+	respawn="false" output="screen">
+    <remap from="/joint_states" to="/m3d/joint_states" />
+  </node>-->
+  
+</launch>
+
+

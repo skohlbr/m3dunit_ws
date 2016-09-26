@@ -1,0 +1,11 @@
+m3d:
+  # Publish all joint states -----------------------------------
+  joint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 50  
+
+  # Position Controllers ---------------------------------------
+  m3d_laser_rotation_controler:
+    type: velocity_controllers/JointVelocityController
+    joint: m3d_laser_rotation_joint
+    pid: {p: 100.0, i: 0.01, d: 10.0}

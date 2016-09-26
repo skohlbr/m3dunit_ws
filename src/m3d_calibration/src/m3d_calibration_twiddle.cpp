@@ -476,7 +476,7 @@ public:
 				point.x = cos(ang)*dist;
 				point.y = sin(ang)*dist;
 				point.z = 0;
-				if (dist > 1 ) segmentPc.push_back(point);
+				if (dist > 1 and dist  < (scan->range_max - 0.25) ) segmentPc.push_back(point);
 			}
 			std::cout << "adding segment with size " << segmentPc.size() << "\n";
 			mPointCloudAggregator.addSegment(segmentPc,tf_transform);
