@@ -225,7 +225,7 @@ public:
 			point.y = sin(ang)*dist;
 			point.z = 0;
 
-			mPointCloudAggregator.addPoints(point, tf_transform);
+			if (dist > 1 and dist  < (scan->range_max - 0.25) ) mPointCloudAggregator.addPoints(point, tf_transform);
 		}
 		publishPointcloud();
 	}

@@ -8,8 +8,8 @@
     <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
   </plugin>
   </gazebo>
-  
-  
+
+
   <gazebo reference="hokuyo_link_rotation">
     <sensor type="gpu_ray" name="head_hokuyo_sensor">
       <pose>0 0 0 0 0 0</pose>
@@ -44,7 +44,7 @@
         <frameName>m3d_sim/rot_laser_optical</frameName>
       </plugin>
     </sensor>
- 
+
   </gazebo>
 
 </robot>
