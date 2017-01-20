@@ -17,7 +17,7 @@ def joinStateCallback (data):
         angle = data.position[0]
         broadcaster = tf.TransformBroadcaster()
 
-        q=tf.transformations.quaternion_from_euler(0,-math.pi/2+0.1,angle)
+        q=tf.transformations.quaternion_from_euler(0,-math.pi/2,angle)
         broadcaster.sendTransform((0.0285, 0 , 0.04), (0,0,0,1),
                     rospy.Time.now(), m3d_front_frame_id, m3d_frame_id)
         broadcaster.sendTransform((-0.0835, 0, 0.1835), q,
