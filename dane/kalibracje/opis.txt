@@ -1,0 +1,119 @@
+		
+1:
+	p.push_back(0);
+	p.push_back(0);
+	p.push_back(0);
+
+	p.push_back(0.1);
+	p.push_back(0.1);
+
+	std::vector<float> dp;
+
+	dp.push_back(0);
+	dp.push_back(0);
+	dp.push_back(0);
+	dp.push_back(0.01);
+	dp.push_back(0.01);
+
+2:
+
+	p.push_back(0.1);
+	p.push_back(0.1);
+	p.push_back(0.1);
+
+	p.push_back(0.1);
+	p.push_back(0.1);
+
+	std::vector<float> dp;
+
+	dp.push_back(0);
+	dp.push_back(0);
+	dp.push_back(0);
+	dp.push_back(0.01);
+	dp.push_back(0.01);
+
+3:
+
+	p.push_back(0.1);
+	p.push_back(0.1);
+	p.push_back(0.1);
+
+	p.push_back(0.1);
+	p.push_back(0.1);
+
+	std::vector<float> dp;
+
+	dp.push_back(0.01);
+	dp.push_back(0.01);
+	dp.push_back(0.01);
+	dp.push_back(0.01);
+	dp.push_back(0.01);
+4:
+
+	p.push_back(0.002);
+	p.push_back(0.002);
+	p.push_back(0.05);
+
+	p.push_back(0.05);
+	p.push_back(0.05);
+
+	std::vector<float> dp;
+
+	dp.push_back(0.01);
+	dp.push_back(0.01);
+	dp.push_back(0.01);
+	dp.push_back(0.02);
+	dp.push_back(0.01);
+
+5:
+
+	p.push_back(0.002);
+	p.push_back(0.002);
+	p.push_back(0.00);
+
+	p.push_back(0.05);
+	p.push_back(0.05);
+
+	std::vector<float> dp;
+
+	dp.push_back(0.0005);
+	dp.push_back(0.0005);
+	dp.push_back(0.0);
+	dp.push_back(0.01);
+	dp.push_back(0.01);
+
+6:
+	p.push_back(0.002);
+	p.push_back(0.002);
+	p.push_back(0.00);
+
+	p.push_back(0.05);
+	p.push_back(0.05);
+
+	std::vector<float> dp;
+
+	dp.push_back(0.0001);
+	dp.push_back(0.0001);
+	dp.push_back(0.0);
+	dp.push_back(0.01);
+	dp.push_back(0.01);
+
+7:
+	p.push_back(0.0);
+	p.push_back(0.0);
+	p.push_back(0.00);
+
+	p.push_back(0.1);
+	p.push_back(0.1);
+
+	std::vector<float> dp;
+
+	dp.push_back(0.0);
+	dp.push_back(0.0);
+	dp.push_back(0.0);
+	dp.push_back(0.01);
+	dp.push_back(0.01);
+
+
+
+

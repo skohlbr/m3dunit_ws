@@ -73,9 +73,63 @@
       <shadows>1</shadows>
     </scene>
     <state world_name='default'>
-      <sim_time>1652 830000000</sim_time>
-      <real_time>359 85250305</real_time>
-      <wall_time>1477072462 342849685</wall_time>
+      <sim_time>2219 920000000</sim_time>
+      <real_time>560 128498499</real_time>
+      <wall_time>1477155290 872846144</wall_time>
+      <model name='House 1'>
+        <pose>-4.54374 -11 0 0 -0 0</pose>
+        <link name='link'>
+          <pose>-4.54374 -11 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='House 1_0'>
+        <pose>-4 10 0 0 -0 0</pose>
+        <link name='link'>
+          <pose>-4 10 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='House 2'>
+        <pose>9 -12 0 0 -0 0</pose>
+        <link name='link'>
+          <pose>9 -12 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='House 2_0'>
+        <pose>8.48002 8 0 0 -0 0</pose>
+        <link name='link'>
+          <pose>8.48002 8 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='House 3'>
+        <pose>-17 -9 0 0 -0 0</pose>
+        <link name='link'>
+          <pose>-17 -9 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='House 3_0'>
+        <pose>-15.484 8.412 0 0 -0 0</pose>
+        <link name='link'>
+          <pose>-15.484 8.412 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
       <model name='Lamp Post'>
         <pose>-27 10.5651 0 0 -0 0</pose>
         <link name='link'>
@@ -103,33 +157,6 @@
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
-      <model name='Office Building'>
-        <pose>-23.8901 23.2276 0 0 -0 0</pose>
-        <link name='link'>
-          <pose>-23.8901 23.2276 0 0 -0 0</pose>
-          <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0 0 0 0 -0 0</acceleration>
-          <wrench>0 0 0 0 -0 0</wrench>
-        </link>
-      </model>
-      <model name='Office Building_0'>
-        <pose>5.95529 22.7731 0 0 -0 0</pose>
-        <link name='link'>
-          <pose>5.95529 22.7731 0 0 -0 0</pose>
-          <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0 0 0 0 -0 0</acceleration>
-          <wrench>0 0 0 0 -0 0</wrench>
-        </link>
-      </model>
-      <model name='Office Building_1'>
-        <pose>34.9686 24.1549 0 0 -0 0</pose>
-        <link name='link'>
-          <pose>34.9686 24.1549 0 0 -0 0</pose>
-          <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0 0 0 0 -0 0</acceleration>
-          <wrench>0 0 0 0 -0 0</wrench>
-        </link>
-      </model>
       <model name='ground_plane'>
         <pose>0 0 0 0 -0 0</pose>
         <link name='link'>
@@ -148,19 +175,10 @@
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
-      <model name='powerplant'>
-        <pose>7.53008 -38.4209 0 0 -0 0</pose>
-        <link name='link'>
-          <pose>7.53008 -38.4209 0.01 0 -0 0</pose>
-          <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0 0 0 0 -0 0</acceleration>
-          <wrench>0 0 0 0 -0 0</wrench>
-        </link>
-      </model>
     </state>
     <gui fullscreen='0'>
       <camera name='user_camera'>
-        <pose>231.491 -96.003 204.078 0 0.739643 2.5202</pose>
+        <pose>45.8683 37.3284 120.088 1.13451e-16 1.32364 -2.80699</pose>
         <view_controller>orbit</view_controller>
       </camera>
     </gui>
@@ -171,44 +189,6 @@
       <elevation>0</elevation>
       <heading_deg>0</heading_deg>
     </spherical_coordinates>
-    <model name='powerplant'>
-      <static>1</static>
-      <link name='link'>
-        <pose>0 0 0.01 0 -0 0</pose>
-        <collision name='wall1'>
-          <geometry>
-            <mesh>
-              <uri>model://powerplant/meshes/powerplant.dae</uri>
-            </mesh>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <bounce/>
-            <friction>
-              <ode/>
-            </friction>
-            <contact>
-              <ode/>
-            </contact>
-          </surface>
-        </collision>
-        <visual name='visual1'>
-          <geometry>
-            <mesh>
-              <uri>model://powerplant/meshes/powerplant.dae</uri>
-            </mesh>
-          </geometry>
-        </visual>
-        <velocity_decay>
-          <linear>0</linear>
-          <angular>0</angular>
-        </velocity_decay>
-        <self_collide>0</self_collide>
-        <kinematic>0</kinematic>
-        <gravity>1</gravity>
-      </link>
-      <pose>7 -54 0 0 -0 0</pose>
-    </model>
     <model name='jersey_barrier_16'>
       <static>1</static>
       <link name='link'>
@@ -337,43 +317,6 @@
       </link>
       <pose>-28 14 0 0 -0 0</pose>
     </model>
-    <model name='Office Building'>
-      <static>1</static>
-      <link name='link'>
-        <collision name='collision'>
-          <geometry>
-            <mesh>
-              <uri>model://office_building/meshes/office_building.dae</uri>
-            </mesh>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <bounce/>
-            <friction>
-              <ode/>
-            </friction>
-            <contact>
-              <ode/>
-            </contact>
-          </surface>
-        </collision>
-        <visual name='visual'>
-          <geometry>
-            <mesh>
-              <uri>model://office_building/meshes/office_building.dae</uri>
-            </mesh>
-          </geometry>
-        </visual>
-        <velocity_decay>
-          <linear>0</linear>
-          <angular>0</angular>
-        </velocity_decay>
-        <self_collide>0</self_collide>
-        <kinematic>0</kinematic>
-        <gravity>1</gravity>
-      </link>
-      <pose>-24 28 0 0 -0 0</pose>
-    </model>
     <model name='Lamp Post'>
       <static>1</static>
       <link name='link'>
@@ -485,13 +428,13 @@
       </link>
       <pose>-17 11 0 0 -0 0</pose>
     </model>
-    <model name='Office Building_0'>
+    <model name='House 1'>
       <static>1</static>
       <link name='link'>
         <collision name='collision'>
           <geometry>
             <mesh>
-              <uri>model://office_building/meshes/office_building.dae</uri>
+              <uri>model://house_1/meshes/house_1.dae</uri>
             </mesh>
           </geometry>
           <max_contacts>10</max_contacts>
@@ -508,9 +451,19 @@
         <visual name='visual'>
           <geometry>
             <mesh>
-              <uri>model://office_building/meshes/office_building.dae</uri>
+              <uri>model://house_1/meshes/house_1.dae</uri>
             </mesh>
           </geometry>
+          <material>
+            <script>
+              <uri>model://house_1/materials/scripts</uri>
+              <uri>model://house_1/materials/textures</uri>
+              <name>House_1/Diffuse</name>
+            </script>
+            <shader type='normal_map_object_space'>
+              <normal_map>House_1_Normal.png</normal_map>
+            </shader>
+          </material>
         </visual>
         <velocity_decay>
           <linear>0</linear>
@@ -520,15 +473,15 @@
         <kinematic>0</kinematic>
         <gravity>1</gravity>
       </link>
-      <pose>5 29 0 0 -0 0</pose>
+      <pose>-4.54374 -11 0 0 -0 0</pose>
     </model>
-    <model name='Office Building_1'>
+    <model name='House 2'>
       <static>1</static>
       <link name='link'>
         <collision name='collision'>
           <geometry>
             <mesh>
-              <uri>model://office_building/meshes/office_building.dae</uri>
+              <uri>model://house_2/meshes/house_2.dae</uri>
             </mesh>
           </geometry>
           <max_contacts>10</max_contacts>
@@ -545,9 +498,20 @@
         <visual name='visual'>
           <geometry>
             <mesh>
-              <uri>model://office_building/meshes/office_building.dae</uri>
+              <uri>model://house_2/meshes/house_2.dae</uri>
             </mesh>
           </geometry>
+          <material>
+            <script>
+              <uri>model://house_2/materials/scripts</uri>
+              <uri>model://house_2/materials/textures</uri>
+              <uri>model://house_1/materials/textures</uri>
+              <name>House_2/Diffuse</name>
+            </script>
+            <shader type='normal_map_object_space'>
+              <normal_map>model://house_1/materials/textures/House_1_Normal.png</normal_map>
+            </shader>
+          </material>
         </visual>
         <velocity_decay>
           <linear>0</linear>
@@ -557,7 +521,198 @@
         <kinematic>0</kinematic>
         <gravity>1</gravity>
       </link>
-      <pose>31 29 0 0 -0 0</pose>
+      <pose>9 -12 0 0 -0 0</pose>
+    </model>
+    <model name='House 3'>
+      <static>1</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://house_3/meshes/house_3.dae</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <bounce/>
+            <friction>
+              <ode/>
+            </friction>
+            <contact>
+              <ode/>
+            </contact>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://house_3/meshes/house_3.dae</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://house_3/materials/scripts</uri>
+              <uri>model://house_3/materials/textures</uri>
+              <uri>model://house_1/materials/textures</uri>
+              <name>House_3/Diffuse</name>
+            </script>
+            <shader type='normal_map_object_space'>
+              <normal_map>model://house_1/materials/textures/House_1_Normal.png</normal_map>
+            </shader>
+          </material>
+        </visual>
+        <velocity_decay>
+          <linear>0</linear>
+          <angular>0</angular>
+        </velocity_decay>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+      </link>
+      <pose>-17 -9 0 0 -0 0</pose>
+    </model>
+    <model name='House 1_0'>
+      <static>1</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://house_1/meshes/house_1.dae</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <bounce/>
+            <friction>
+              <ode/>
+            </friction>
+            <contact>
+              <ode/>
+            </contact>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://house_1/meshes/house_1.dae</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://house_1/materials/scripts</uri>
+              <uri>model://house_1/materials/textures</uri>
+              <name>House_1/Diffuse</name>
+            </script>
+            <shader type='normal_map_object_space'>
+              <normal_map>House_1_Normal.png</normal_map>
+            </shader>
+          </material>
+        </visual>
+        <velocity_decay>
+          <linear>0</linear>
+          <angular>0</angular>
+        </velocity_decay>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+      </link>
+      <pose>-4 10 0 0 -0 0</pose>
+    </model>
+    <model name='House 2_0'>
+      <static>1</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://house_2/meshes/house_2.dae</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <bounce/>
+            <friction>
+              <ode/>
+            </friction>
+            <contact>
+              <ode/>
+            </contact>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://house_2/meshes/house_2.dae</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://house_2/materials/scripts</uri>
+              <uri>model://house_2/materials/textures</uri>
+              <uri>model://house_1/materials/textures</uri>
+              <name>House_2/Diffuse</name>
+            </script>
+            <shader type='normal_map_object_space'>
+              <normal_map>model://house_1/materials/textures/House_1_Normal.png</normal_map>
+            </shader>
+          </material>
+        </visual>
+        <velocity_decay>
+          <linear>0</linear>
+          <angular>0</angular>
+        </velocity_decay>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+      </link>
+      <pose>8.48002 8 0 0 -0 0</pose>
+    </model>
+    <model name='House 3_0'>
+      <static>1</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://house_3/meshes/house_3.dae</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <bounce/>
+            <friction>
+              <ode/>
+            </friction>
+            <contact>
+              <ode/>
+            </contact>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://house_3/meshes/house_3.dae</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://house_3/materials/scripts</uri>
+              <uri>model://house_3/materials/textures</uri>
+              <uri>model://house_1/materials/textures</uri>
+              <name>House_3/Diffuse</name>
+            </script>
+            <shader type='normal_map_object_space'>
+              <normal_map>model://house_1/materials/textures/House_1_Normal.png</normal_map>
+            </shader>
+          </material>
+        </visual>
+        <velocity_decay>
+          <linear>0</linear>
+          <angular>0</angular>
+        </velocity_decay>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+      </link>
+      <pose>-15.484 8.412 0 0 -0 0</pose>
     </model>
   </world>
 </sdf>

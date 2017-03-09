@@ -321,7 +321,8 @@ public:
 		if (!mPointCloudAggregator.isPointcloudReady()) return;
 		std::cout <<" finished getting data\n";
 
-
+		std::ofstream output;
+	    output.open ("/tmp/out.txt");
 		testData(0,0,0,0,0,0);
 
 
@@ -330,18 +331,17 @@ public:
 
 
 		p.push_back(0.0);
-		p.push_back(0);
-		p.push_back(0);
+		p.push_back(0.0);
+		p.push_back(0.00);
 
-		p.push_back(0);
-		p.push_back(0);
+		p.push_back(0.1);
+		p.push_back(0.1);
 
 		std::vector<float> dp;
 
-		dp.push_back(0.01);
-		dp.push_back(0.01);
-		dp.push_back(0.01);
-
+		dp.push_back(0.0);
+		dp.push_back(0.0);
+		dp.push_back(0.0);
 		dp.push_back(0.01);
 		dp.push_back(0.01);
 
@@ -349,8 +349,9 @@ public:
 		float best_error =  testData(0,p[0],p[1],p[2],p[3],p[4]);
 		int n =0;
 		float incr  = 100;
-		while (incr > 0.000001)
+		while (incr > 0.0001)
 		{
+
 			for (int i=0; i < dims; i++)
 			{
 				p[i] = p[i] + dp[i];
@@ -375,14 +376,17 @@ public:
 							dp[i] = dp[i] *0.9;
 						}
 				}
-
 			}
+      output << 0 << "\t"<<p[0]<< "\t"<<p[1]<< "\t"<<p[2]<< "\t"<<p[3]<< "\t"<<p[4]<<"\n";
+      output.flush();
 			incr =0.0;
 			for (int i =0; i < dims; i++)
 			{
 				incr = dp[i];
 			}
 			n ++;
+
+
 		    std::cout << "TWIDDLE :" << n <<" err : "<< best_error << " incr:" << incr << "\n";
 
 		    viewer.removePointCloud("first_cloud");

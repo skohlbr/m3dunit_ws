@@ -294,7 +294,8 @@ public:
 
 		std::cout <<" finished getting data\n";
 
-
+    std::ofstream output;
+	    output.open ("/tmp/out.txt");
 		testData(0,0,0,0,0,0);
 
 
@@ -303,26 +304,26 @@ public:
 
 
 		p.push_back(0.0);
-		p.push_back(0.12);
-		p.push_back(0);
+		p.push_back(0.0);
+		p.push_back(0.0);
 
-		p.push_back(0);
-		p.push_back(0);
+		p.push_back(0.05);
+		p.push_back(0.05);
 
-
+    std::vector<float> start = p;
 		float best_error =  testData(0,p[0],p[1],p[2],p[3],p[4]);
 		int n =0;
 		float incr  = 100;
 		float temperature = 1.0f;
-		float alpha = 0.99;
-		while (temperature > 0.001f)
+		float alpha = 0.999;
+		while (temperature > 0.00001f)
 		{
 			float c_p[5];
-			c_p[0] = p[0] + 0.001 *m_rand();
-			c_p[1] = p[1] + 0.001 *m_rand();
-			c_p[2] = p[2] + 0.001 *m_rand();
-			c_p[3] = p[3] + 0.001 *m_rand();
-			c_p[4] = p[4] + 0.001 *m_rand();
+			c_p[0] = start[0] + 0.003 *m_rand();
+			c_p[1] = start[1] + 0.003 *m_rand();
+			c_p[2] = start[2] + 0.01 *m_rand();
+			c_p[3] = start[3] + 0.2 *m_rand();
+			c_p[4] = start[4] + 0.2 *m_rand();
 
 			float c_error = testData(0,c_p[0],c_p[1],c_p[2],c_p[3],c_p[4]);
 
@@ -338,10 +339,13 @@ public:
 				p[4] = c_p[4];
 			}
 
-
 			temperature = alpha * temperature;
+
 			std::cout << "system temperature : " <<  temperature << " best_error : " << best_error << "\n";
-		    viewer.removePointCloud("first_cloud");
+      output << 0 << "\t"<<p[0]<< "\t"<<p[1]<< "\t"<<p[2]<< "\t"<<p[3]<< "\t"<<p[4]<<"\n";
+      output.flush();
+
+      viewer.removePointCloud("first_cloud");
 			viewer.removePointCloud("second_cloud");
 
 
@@ -437,7 +441,7 @@ public:
 				point.x = cos(ang)*dist;
 				point.y = sin(ang)*dist;
 				point.z = 0;
-				if (dist > 1 ) segmentPc.push_back(point);
+				if (dist > 1 and dist  < (scan->range_max - 0.25) ) segmentPc.push_back(point);
 			}
 			//std::cout << "adding segment with size " << segmentPc.size() << "\n";
 			mPointCloudAggregator.addSegment(segmentPc,tf_transform);
