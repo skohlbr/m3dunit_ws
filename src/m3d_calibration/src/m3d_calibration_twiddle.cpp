@@ -48,6 +48,7 @@ public:
 
 		angularDistance = 2.0*M_PI;
 		firstScan = false;
+
 	}
 	void setAngularDistance (float _angDistance)
 	{
@@ -56,6 +57,7 @@ public:
 	void addSegment (pcl::PointCloud<PointType> &p, tf::Transform &transform)
 	{
 		if (!creatingPointCloud) return;
+
 		scanSegment segment;
 		segment.segment = p;
 		Eigen::Affine3d Af3d;
@@ -166,12 +168,14 @@ public:
 	aggregator_node ():
 	n("~"),tfListener(tfBuffer)
 	{
-
+    currently_skipped = 0;
 		laserOffsetMatrix = Eigen::Affine3f::Identity();
 		n.param<std::string>("unit_name", unitName, "m3d_test");
 		n.param<std::string>("pointCloudFrame", rootTransform, unitName+"/m3d_link");
 		n.param<std::string>("rotLaserScan", rotLaserScan, "/"+unitName+"/rot_scan");
 		n.param<std::string>("rotLaserPointCloud", rotLaserPointCloud, "/"+unitName+"/rot_cloud");
+    n.param<int>("skip_scans", skip_scans, -1);
+
 		float angularDistance;
 		n.param<int>("laserUpAxis", laserUpAxis, 1);
 		n.param<float>("angularDistance", angularDistance, 2);
@@ -429,6 +433,9 @@ public:
 
 	void rotLaserPointCloudCallback(const sensor_msgs::PointCloud2Ptr& scan )
 	{
+    currently_skipped++;
+    if (currently_skipped < skip_scans) return;
+    currently_skipped =0;
 		ROS_DEBUG("Recieved scan, frame : %s", scan->header.frame_id.c_str());
 		geometry_msgs::TransformStamped transform;
 	    try{
@@ -452,6 +459,9 @@ public:
 
 	void rotLaserScanCallback( const sensor_msgs::LaserScanPtr& scan)
 	{
+    currently_skipped++;
+    if (currently_skipped < skip_scans) return;
+    currently_skipped =0;
 		ROS_DEBUG("Recieved pointcloud, frame : %s", scan->header.frame_id.c_str());
 		geometry_msgs::TransformStamped transform;
 		try{
@@ -512,6 +522,8 @@ private:
 	int laserUpAxis;
 	/// optimized params
 	std::vector<float> p;
+  int skip_scans;
+  int currently_skipped;
 };
 
 

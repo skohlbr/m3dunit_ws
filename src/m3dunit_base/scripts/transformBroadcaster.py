@@ -9,14 +9,17 @@ import os
 import json
 TIM500_TRANSLATION = (0, 0.0035,  0);
 LMS100_TRANSLATION = (0.074, 0, 0.068);
+IDENTITY_TRANSLATION = (0,0,0);
 
 TIM500_ORIENTATION = (0, 0, 0, 1);
 LMS100_ORIENTATION = (0, 0, 0, 1);
+IDENTITY_ORIENTATION = (0,0,0,1);
 
 calibration_fileName = None
 
 calibration_translation = (0,0,0)
 calibration_orientation = (0,0,0,1)
+
 def loadCalibrationFile():
     global calibration_translation
     global calibration_orientation
@@ -68,7 +71,7 @@ if __name__ == '__main__':
 
     rospy.init_node('laser_transform_broadcaster')
     front_laser_type = rospy.get_param('~front_laser_type', 'None');
-    rot_laser_type   = rospy.get_param('~front_laser_type', 'None');
+    rot_laser_type   = rospy.get_param('~rot_laser_type', 'None');
     prefix   = rospy.get_param('~prefix', '');
     service1 = rospy.Service('m3d_calibration', calibration, saveCalibration)
 
@@ -77,27 +80,38 @@ if __name__ == '__main__':
 
     while not rospy.is_shutdown():
 
-        if rot_laser_type == "TIM500" :
-            broadcaster.sendTransform(TIM500_TRANSLATION, TIM500_ORIENTATION,
-                     rospy.Time.now(),
-                     prefix+"rot_laser_optical", prefix+"m3d_rot_laser_link_uncalibrated")
-        if rot_laser_type == "LMS100" :
-            broadcaster.sendTransform(LMS100_TRANSLATION, LMS100_ORIENTATION,
-                     rospy.Time.now(),
-                     prefix+"m3d_rot_laser_link_uncalibrated", prefix+"rot_laser_optical")
-        broadcaster.sendTransform(calibration_translation, calibration_orientation,
-            rospy.Time.now(),
-            prefix+"m3d_rot_laser_link_uncalibrated", prefix+"m3d_rot_laser_link")
+        if rot_laser_type != "NULL":
+            if rot_laser_type == "IDENTITY" :
+                broadcaster.sendTransform(IDENTITY_TRANSLATION, IDENTITY_ORIENTATION,
+                         rospy.Time.now(),
+                         prefix+"rot_laser_optical", prefix+"m3d_rot_laser_link_uncalibrated")
+            if rot_laser_type == "TIM500" :
+                broadcaster.sendTransform(TIM500_TRANSLATION, TIM500_ORIENTATION,
+                         rospy.Time.now(),
+                         prefix+"rot_laser_optical", prefix+"m3d_rot_laser_link_uncalibrated")
+            if rot_laser_type == "LMS100" :
+                broadcaster.sendTransform(LMS100_TRANSLATION, LMS100_ORIENTATION,
+                         rospy.Time.now(),
+                         prefix+"m3d_rot_laser_link_uncalibrated", prefix+"rot_laser_optical")
 
-        if front_laser_type == "TIM500" :
-            broadcaster.sendTransform(TIM500_TRANSLATION, TIM500_ORIENTATION,
-                     rospy.Time.now(),
-                     prefix+"front_laser_optical",prefix+"m3d_front_laser_link")
+            broadcaster.sendTransform(calibration_translation, calibration_orientation,
+                rospy.Time.now(),
+                prefix+"m3d_rot_laser_link_uncalibrated", prefix+"m3d_rot_laser_link")
+        if front_laser_type != "NULL":
+            if front_laser_type == "IDENTITY" :
+                broadcaster.sendTransform(IDENTITY_TRANSLATION, IDENTITY_ORIENTATION,
+                         rospy.Time.now(),
+                         prefix+"front_laser_optical",prefix+"m3d_front_laser_link")
 
-        if front_laser_type == "LMS100" :
-            broadcaster.sendTransform(TIM500_TRANSLATION, TIM500_ORIENTATION,
-                     rospy.Time.now(),
-                     prefix+"front_laser_optical",prefix+"m3d_front_laser_link")
+            if front_laser_type == "TIM500" :
+                broadcaster.sendTransform(TIM500_TRANSLATION, TIM500_ORIENTATION,
+                         rospy.Time.now(),
+                         prefix+"front_laser_optical",prefix+"m3d_front_laser_link")
+
+            if front_laser_type == "LMS100" :
+                broadcaster.sendTransform(TIM500_TRANSLATION, TIM500_ORIENTATION,
+                         rospy.Time.now(),
+                         prefix+"front_laser_optical",prefix+"m3d_front_laser_link")
 
 
         r.sleep()
